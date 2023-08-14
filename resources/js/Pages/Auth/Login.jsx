@@ -44,6 +44,7 @@ export default function Login({ status, canResetPassword }) {
                         className="mt-1 block w-full"
                         autoComplete="username"
                         isFocused={true}
+                        placeholder="inform your email"
                         onChange={(e) => setData('email', e.target.value)}
                     />
 
@@ -60,24 +61,14 @@ export default function Login({ status, canResetPassword }) {
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="current-password"
+                        placeholder="your password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
+                <div className="text-end py-2">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
@@ -87,9 +78,16 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
+                </div>
+                
+                <div>
+                    <PrimaryButton className="bg-primary text-white w-full text-center mb-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
+
+                    <Link href={route('register')}>Don't have an account yet?
+                        <span className='text-primary'> cadastre-se</span>
+                    </Link>
                 </div>
             </form>
         </GuestLayout>

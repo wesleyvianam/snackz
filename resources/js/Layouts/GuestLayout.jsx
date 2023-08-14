@@ -5,8 +5,8 @@ import LogoText from '../Components/LogoText';
 export default function Guest({ children }) {
     return (
         <div className="flex h-screen">
-            <div className="w-1/4">
-                <div>
+            <div className="w-1/4 text px-10 py-32">
+                <div className='mb-10'>
                     <Link href="/">
                         <LogoText>Snackz</LogoText>
                     </Link>
@@ -16,7 +16,7 @@ export default function Guest({ children }) {
                     {children}
                 </div>
             </div>
-            <div className='w-3/4 p-10'>
+            <div className='w-3/4 py-10 pe-10'>
                 <div className="bg-primary rounded-3xl min-h-full flex justify-center items-center text-white text-3xl"> 
                     IMAGE QUE O NIKOLAS VAI FAZER
                 </div>
