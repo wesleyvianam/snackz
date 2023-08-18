@@ -17,7 +17,7 @@ export default function Guest({ children }) {
                 </div>
             </div>
             <div className='w-3/4 py-10 pe-10'>
-                <div className="bg-primary rounded-3xl min-h-full flex justify-center items-center text-white text-3xl"> 
+                <div className="bg-primary rounded-3xl min-h-full flex justify-center items-center text-blue-500 text-3xl"> 
                     IMAGE QUE O NIKOLAS VAI FAZER
                 </div>
             </div>

@@ -17,10 +17,12 @@ export default {
             },
         },
         textColor: {
-            'primary': '#4590BF',
+            'primary': '#353535',
+            'seconday': '#898989',
         },
         backgroundColor: {
-            'primary': '#4590BF',
+            'primary': '#353535',
+            'seconday': '#898989',
         }
     },
 
