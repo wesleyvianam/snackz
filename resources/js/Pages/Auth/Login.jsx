@@ -33,15 +33,13 @@ export default function Login({ status, canResetPassword }) {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
+                <div className="pb-1">
                     <TextInput
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="mt-1 p-3 block w-full"
                         autoComplete="username"
                         isFocused={true}
                         placeholder="inform your email"
@@ -52,14 +50,12 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
                     <TextInput
                         id="password"
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-1 p-3 block w-full"
                         autoComplete="current-password"
                         placeholder="your password"
                         onChange={(e) => setData('password', e.target.value)}
@@ -79,14 +75,14 @@ export default function Login({ status, canResetPassword }) {
                     )}
 
                 </div>
-                
+
                 <div>
                     <PrimaryButton className="bg-primary text-white w-full text-center mb-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
 
                     <Link href={route('register')}>Don't have an account yet?
-                        <span className='text-primary'> cadastre-se</span>
+                        <span className='text-primary'> Register</span>
                     </Link>
                 </div>
             </form>
