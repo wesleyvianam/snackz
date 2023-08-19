@@ -26,11 +26,11 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Employees
-                                </NavLink>
-                            </div>
+                            {/*<div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">*/}
+                            {/*    <NavLink href={route('employee')} active={route().current('employee')}>*/}
+                            {/*        Employees*/}
+                            {/*    </NavLink>*/}
+                            {/*</div>*/}
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -118,12 +118,6 @@ export default function Authenticated({ user, header, children }) {
                     </div>
                 </div>
             </nav>
-
-            {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
-                </header>
-            )}
 
             <main>{children}</main>
         </div>
