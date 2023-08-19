@@ -3,7 +3,7 @@ export default function PrimaryButton({ className = '', disabled, children, ...p
         <button
             {...props}
             className={
-                `px-4 py-2 border bg-primary border-transparent rounded-md font-semibold text-xs uppercase ${
+                `px-4 py-2 border bg-primary text-[#FFFFFF] text-md border-transparent rounded-full font-semibold ${
                     disabled && 'opacity-25'
                 } ` + className
             }
