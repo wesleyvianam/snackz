@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'super',
-        'parent_id' => "",
+        'parent_id',
     ];
 
     /**
