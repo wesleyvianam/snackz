@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Snack\SnackItemsController;
+use App\Http\Controllers\Snack\SnackOptionsController;
 use App\Http\Controllers\Team\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('team', [RegisterController::class, 'register']);
 
     Route::apiResource('/snack', SnackItemsController::class)
+        ->except(['index', 'show', 'create', 'edit']);
+
+    Route::apiResource('/snack/{snack}/option', SnackOptionsController::class)
         ->except(['index', 'show', 'create', 'edit']);
 });
 
