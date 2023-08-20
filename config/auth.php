@@ -42,11 +42,6 @@ return [
         ],
     ],
 
-    'api' => [
-        'driver' => 'passport', // ou 'jwt' se você estiver usando JWT
-        'provider' => 'users',
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
