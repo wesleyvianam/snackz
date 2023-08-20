@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Snack;
 
+use App\Http\Controllers\Controller;
 use App\Models\SnackItems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SnackItemsController
+class SnackItemsController extends Controller
 {
     public function store(Request $request)
     {
