@@ -17,7 +17,7 @@ class RegisterController extends Controller
             $user = User::create([
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' =>  Hash::make($request->password),
+                'password' => Hash::make($request->password),
             ]);
 
             $workspace = $user->workspace()->create([
@@ -29,9 +29,9 @@ class RegisterController extends Controller
                 'user_id' => $user->id,
                 'workspace_id' => $workspace->id,
             ]);
-        });
 
-        if (!$save) abort(500, 'Error ao tentar criar usuário');
+            return $user;
+        });
 
         return response()->json($save);
     }
