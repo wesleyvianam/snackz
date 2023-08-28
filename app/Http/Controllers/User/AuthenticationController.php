@@ -15,7 +15,9 @@ class AuthenticationController
             'password' => ['required'],
         ]);
 
-        if (!auth()->attempt($credentials)) abort('401', 'Invalid Credentials');
+        if (!auth()->attempt($credentials)) {
+            abort(401, 'Invalid Credentials');
+        }
 
         return response()->json([
             'token' => $request->user()->createToken('invoice')
