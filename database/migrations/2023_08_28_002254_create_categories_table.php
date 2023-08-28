@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('snack_items', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('title');
 
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('workspace_id')->constrained();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('snack_items');
+        Schema::dropIfExists('categories');
     }
 };
