@@ -1,9 +1,6 @@
 <?php
 
 use App\Http\Controllers\Category\TeamController;
-use App\Http\Controllers\Snack\SnackItemsController;
-use App\Http\Controllers\Snack\SnackListController;
-use App\Http\Controllers\Snack\SnackOptionsController;
 use App\Http\Controllers\User\AuthenticationController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
@@ -26,14 +23,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('team', [TeamController::class, 'index']);
 
     Route::post('team', [RegisterController::class, 'register']);
-
-    Route::apiResource('/snack', SnackItemsController::class)
-        ->except(['index', 'show', 'create', 'edit']);
-
-    Route::apiResource('/snack/{snack}/option', SnackOptionsController::class)
-        ->except(['index', 'show', 'create', 'edit']);
-
-    Route::get('snack', [SnackListController::class, 'index']);
 });
 
 Route::post('register', [RegisterController::class, 'register']);
