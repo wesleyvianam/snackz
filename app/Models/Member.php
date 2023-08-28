@@ -11,7 +11,9 @@ class Member extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'workspace_id',
+        'user_id'
     ];
 
     public function workspace(): BelongsTo

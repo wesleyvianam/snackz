@@ -46,6 +46,11 @@ class User extends Authenticatable
 
     public function workspace(): BelongsTo
     {
-        return $this->belongsTo(workspace::class);
+        return $this->belongsTo(Workspace::class);
+    }
+
+    public function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class);
     }
 }
