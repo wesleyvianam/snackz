@@ -1,13 +1,12 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Category\TeamController;
 use App\Http\Controllers\Snack\SnackItemsController;
 use App\Http\Controllers\Snack\SnackListController;
 use App\Http\Controllers\Snack\SnackOptionsController;
-use App\Http\Controllers\Team\TeamController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\User\AuthenticationController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
