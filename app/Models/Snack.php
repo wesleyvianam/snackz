@@ -11,7 +11,8 @@ class Snack extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'category_id'
     ];
 
     public function category(): BelongsTo
