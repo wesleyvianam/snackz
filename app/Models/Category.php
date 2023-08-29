@@ -11,7 +11,8 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title'
+        'title',
+        'workspace_id'
     ];
 
     public function workspace(): BelongsTo
