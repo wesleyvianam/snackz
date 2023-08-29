@@ -14,7 +14,7 @@ class Controller extends BaseController
 
     public function getWorkspace()
     {
-        $workspace = Workspace::where('user_id', Auth::user()->id)->get();
+        $workspace = Auth::user()->workspace()->get();
 
         return $workspace[0];
     }
