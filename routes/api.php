@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\Snack\SnackController;
 use App\Http\Controllers\User\AuthenticationController;
 use App\Http\Controllers\User\RegisterController;
@@ -17,6 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/workspace', WorkspaceController::class)
         ->except(['view', 'store', 'destroy']);
+
+    Route::apiResource('/members', MemberController::class);
 });
 
 Route::post('register', [RegisterController::class, 'register']);
