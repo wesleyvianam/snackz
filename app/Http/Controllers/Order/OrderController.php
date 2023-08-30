@@ -4,27 +4,36 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\SnackTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        DB::transaction(function () use ($request) {
+        $user = Auth::user();
 
+        $orders = DB::transaction(function () use ($request, $user) {
             $order = [];
-            foreach ($request->snack_id as $snack) {
+            foreach ($request->snack as $snack) {
                 $order[] = Order::create([
-                    'snack_id' => $snack,
-                    'member_id' => $request->member,
+                    'snack_id' => $snack['id'],
+                    'member_id' => $user->id,
                 ]);
 
                 if ($request->recurrent) {
-
+                    SnackTemplate::create([
+                        'snack_id' => $snack['id'],
+                        'member_id' => $user->id,
+                    ]);
                 }
             }
 
+            return $order;
         });
+
+        return response()->json($orders);
     }
 }
