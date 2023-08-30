@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Member\MemberController;
+use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Order\ReportsController;
 use App\Http\Controllers\Snack\SnackController;
 use App\Http\Controllers\User\AuthenticationController;
 use App\Http\Controllers\User\RegisterController;
@@ -20,6 +22,10 @@ Route::middleware('auth:sanctum')->group(function () {
         ->except(['view', 'store', 'destroy']);
 
     Route::apiResource('/members', MemberController::class);
+
+    Route::apiResource('/orders', OrderController::class);
+
+    Route::get('/reports/all', [ReportsController::class, 'listAll']);
 });
 
 Route::post('register', [RegisterController::class, 'register']);
