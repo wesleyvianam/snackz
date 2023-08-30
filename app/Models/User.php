@@ -45,9 +45,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function workspace(): HasOne
+    public function workspace(): BelongsTo
     {
-        return $this->hasOne(Workspace::class);
+        return $this->BelongsTo(Workspace::class);
     }
 
     public function member(): BelongsTo
