@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-
-class AuthenticationController
+class AuthenticationController extends Controller
 {
     public function login(Request $request)
     {
