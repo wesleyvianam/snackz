@@ -19,8 +19,14 @@ class AuthenticationController
             abort(401, 'Invalid Credentials');
         }
 
+        $user = $request->user();
+
+        $user->tokens()->delete();
+
+        $token = $user->createToken('invoice');
+
         return response()->json([
-            'token' => $request->user()->createToken('invoice')
+            'token' => $token
         ]);
     }
 }
