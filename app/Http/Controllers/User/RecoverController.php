@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Mail\Recover;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 
@@ -13,9 +14,14 @@ class RecoverController extends Controller
     public function store(Request $request)
     {
         $email = $request->email;
-        $send = Mail::to('wesley.vmartins.js@gmail.com', 'name person')->send(new Recover([
+
+        $token = "shdjklfhslkjdfhlskjdhfl";
+
+        $this->saveToken($email, $token);
+
+        $send = Mail::to("$email", 'name person')->send(new Recover([
             'fromEmail' => 'Snackz',
-            'token' => 'X0A8Gsa&sF',
+            'token' => $token,
             'message' => 'Use Token para refazer sua senha',
         ]));
 
@@ -25,5 +31,18 @@ class RecoverController extends Controller
     public function update()
     {
 
+    }
+
+    private function saveToken($email, $token)
+    {
+
+        $query = DB::table('password_reset_tokens')
+            ->insert([
+                'email' => $email,
+                'token' => $token,
+                'created_at' => new \DateTime()
+            ]);
+
+        dd($query);
     }
 }
