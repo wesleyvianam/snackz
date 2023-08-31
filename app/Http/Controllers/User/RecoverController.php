@@ -3,21 +3,27 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Recover;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 
 class RecoverController extends Controller
 {
-    public function recover(Request $request)
+    public function store(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $email = $request->email;
+        $send = Mail::to('wesley.vmartins.js@gmail.com', 'name person')->send(new Recover([
+            'fromEmail' => 'Snackz',
+            'token' => 'X0A8Gsa&sF',
+            'message' => 'Use Token para refazer sua senha',
+        ]));
 
-        $status = Password::sendResetLink(
-            $request->only('mail')
-        );
+        return response()->json($send);
+    }
 
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+    public function update()
+    {
+
     }
 }
