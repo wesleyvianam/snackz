@@ -36,6 +36,7 @@ Route::group([], function () {
 
     Route::post('login', [AuthenticationController::class, 'login']);
 
-    Route::post('recover', [RecoverController::class, 'recover'])
-        ->middleware('guest')->name('password.email');;
+    Route::post('forgot', [RecoverController::class, 'store']);
+
+    Route::post('recover', [RecoverController::class, 'update']);
 });
