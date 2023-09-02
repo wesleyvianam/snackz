@@ -13,7 +13,9 @@ class Workspace extends Model
 
     protected $fillable = [
         'name',
-        'user_id'
+        'recurrent',
+        'snack_time',
+        'user_id',
     ];
 
     public function members(): HasMany

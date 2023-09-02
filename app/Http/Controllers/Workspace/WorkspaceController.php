@@ -18,7 +18,9 @@ class WorkspaceController extends Controller
     public function update(Workspace $workspace, Request $request)
     {
         $workspace->update([
-            "name" => $request->name
+            "name" => $request->name,
+            "recurrent" => $request->recurrent,
+            "snack_time" => $request->snack_time
         ]);
 
         return response()->json($workspace);
