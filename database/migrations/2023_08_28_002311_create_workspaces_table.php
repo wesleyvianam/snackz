@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('workspaces', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->boolean('recurrent')->nullable();
+            $table->time('snack_time')->nullable();
 
             $table->foreignId('user_id')->constrained();
 
