@@ -31,4 +31,9 @@ class Member extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function snackTemplates(): HasMany
+    {
+        return $this->hasMany(SnackTemplate::class);
+    }
 }
