@@ -18,6 +18,22 @@ class MemberController extends Controller
         $members = $workspace->members()->get();
 
         return response()->json($members);
+
+    }
+
+    public function show(Member $member)
+    {
+        $user = User::where('id', $member->user_id)->get();
+        $workspace = $this->getWorkspace();
+
+        return response()->json([
+            'id' => $member->id,
+            'username' => $user[0]->username,
+            'company' => $workspace->name,
+            'name' => $member->name,
+            'email' => $user[0]->email,
+            'user_id' => $user[0]->id,
+        ]);
     }
 
     public function store(Request $request)
