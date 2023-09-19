@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->config == 0) {
-            return to_route('settings.index');
+            return to_route('setting.index');
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);

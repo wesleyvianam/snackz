@@ -25,36 +25,36 @@
         </div>
     </div>
 
-{{--    <div class="py-12">--}}
-{{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
-{{--            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">--}}
-{{--                <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center flex-col">--}}
-{{--                    <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-700">--}}
-{{--                        <div class="h-4 bg-blue-600 rounded-full dark:bg-blue-500" style="width: 2%"></div>--}}
-{{--                    </div>--}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center flex-col">
+                    <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
+                        <div class="h-4 bg-blue-600 rounded-full dark:bg-blue-500" style="width: 2%"></div>
+                    </div>
 
-{{--                    <h1 class="text-2xl">Qual o nome da sua empresa?</h1>--}}
+                    <h1 class="text-2xl">Qual o nome da sua empresa?</h1>
 
-{{--                    <div class="w-1/3 py-3">--}}
-{{--                        <x-text-input id="email"--}}
-{{--                            class="block mt-1 w-full"--}}
-{{--                            type="text" name="email"--}}
-{{--                            :value="old('email')"--}}
-{{--                            required--}}
-{{--                            autofocus--}}
-{{--                            autocomplete="email"--}}
-{{--                            placeholder="Nome da empresa" />--}}
+                    <div class="w-1/3 py-3">
+                        <x-text-input id="email"
+                            class="block mt-1 w-full"
+                            type="text" name="email"
+                            :value="old('email')"
+                            required
+                            autofocus
+                            autocomplete="email"
+                            placeholder="Nome da empresa" />
 
-{{--                        <x-input-error :messages="$errors->get('email')" class="mt-2" />--}}
-{{--                    </div>--}}
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
 
-{{--                    <div class="w-1/3 text-end">--}}
-{{--                        <button class="p-1 border rounded">Next ></button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+                    <div class="w-1/3 text-end">
+                        <button class="p-1 border rounded">Next ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {{--    <div class="py-12">--}}
 {{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}

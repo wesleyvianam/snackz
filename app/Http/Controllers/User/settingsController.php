@@ -10,6 +10,6 @@ class settingsController extends Controller
     {
         $hello = "Hello World";
 
-        return view('settings.index', compact('hello'));
+        return view('setting.index', compact('hello'));
     }
 }
