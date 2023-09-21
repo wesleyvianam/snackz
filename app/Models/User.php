@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'username',
         'config',
+        'workspace_id'
     ];
 
     /**

@@ -12,7 +12,8 @@ class Snack extends Model
 
     protected $fillable = [
         'name',
-        'category_id'
+        'category_id',
+        'workspace_id'
     ];
 
     public function category(): BelongsTo

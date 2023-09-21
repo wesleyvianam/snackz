@@ -13,6 +13,7 @@ class SnackTemplate extends Model
     protected $fillable = [
         'snack_id',
         'member_id',
+        'workspace_id'
     ];
 
     public function snack(): BelongsTo
