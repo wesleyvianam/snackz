@@ -42,7 +42,8 @@ class RegisteredUserController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'config' => 0
+                'config' => 0,
+                'super' => 1,
             ]);
 
             $workspace = $user->workspace()->create([
@@ -53,6 +54,10 @@ class RegisteredUserController extends Controller
                 'name' => $request->name,
                 'user_id' => $user->id,
                 'workspace_id' => $workspace->id,
+            ]);
+
+            $user->update([
+                'workspace_id' => $workspace->id
             ]);
 
             return $user;
