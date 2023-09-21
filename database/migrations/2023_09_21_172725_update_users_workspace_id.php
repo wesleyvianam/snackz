@@ -12,15 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('workspace_id')->constrained();
+            $table->foreignId('workspace_id')->constrained()->nullable();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        //
-    }
+    public function down(): void {}
 };
