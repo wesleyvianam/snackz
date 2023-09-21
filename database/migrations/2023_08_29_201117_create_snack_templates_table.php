@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->foreignId('member_id')->constrained();
 
+            $table->foreignId('workspace_id')->constrained();
+
             $table->timestamps();
         });
     }
