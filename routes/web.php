@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\settingsController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/setting', [settingsController::class, 'index'])->name('setting.index');
+
+    Route::resource('/member', MemberController::class)
+        ->except(['create','edit','show','update']);
 });
 
 require __DIR__.'/auth.php';
