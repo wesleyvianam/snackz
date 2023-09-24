@@ -17,8 +17,7 @@ class MemberController extends Controller
 
         $members = $workspace->members()->get();
 
-        return response()->json($members);
-
+        return view('member.index', compact('members'));
     }
 
     public function show(Member $member)
@@ -44,7 +43,9 @@ class MemberController extends Controller
             $user = User::create([
                 "username" => $request->username,
                 "email" => $request->email,
-                "password" => Hash::make($request->password),
+                "password" => Hash::make("e46a73d1"),
+                "config" => 0,
+                "super" => 0
             ]);
 
             $member = $user->member()->create([
@@ -56,8 +57,6 @@ class MemberController extends Controller
             return $member;
         });
 
-        return response()->json($save);
+        return to_route('member.index');
     }
-
-
 }
