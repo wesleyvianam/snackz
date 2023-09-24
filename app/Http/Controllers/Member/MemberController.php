@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -35,11 +36,11 @@ class MemberController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $workspace = $this->getWorkspace();
 
-        $save = DB::transaction(function () use ($request, $workspace) {
+        DB::transaction(function () use ($request, $workspace) {
             $user = User::create([
                 "username" => $request->username,
                 "email" => $request->email,
@@ -48,14 +49,20 @@ class MemberController extends Controller
                 "super" => 0
             ]);
 
-            $member = $user->member()->create([
+            $user->member()->create([
                 "name" => $request->name,
                 "workspace_id" => $workspace->id,
                 "user_id" => $user->id,
             ]);
-
-            return $member;
         });
+
+        return to_route('member.index');
+    }
+
+    public function destroy(Member $member): RedirectResponse
+    {
+        $member->user->delete();
+        $member->delete();
 
         return to_route('member.index');
     }
