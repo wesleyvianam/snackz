@@ -1,9 +1,9 @@
 <x-modal name="modal-member" :show="$errors->userDeletion->isNotEmpty()" focusable>
-    <form method="post" action="{{ route('member.store') }}" class="p-6">
+    <form method="post" action="{{ route('members.store') }}" class="p-6">
         @csrf
 
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Write data of new member') }}
+            {{ __('Write data of new members') }}
         </h2>
 
         <p class="text-md font-light text-gray-900 dark:text-gray-100">
