@@ -18,7 +18,7 @@ class MemberController extends Controller
 
         $members = $workspace->members()->get();
 
-        return view('member.index', compact('members'));
+        return view('members.index', compact('members'));
     }
 
     public function show(Member $member)
@@ -56,7 +56,7 @@ class MemberController extends Controller
             ]);
         });
 
-        return to_route('member.index');
+        return to_route('members.index');
     }
 
     public function destroy(Member $member): RedirectResponse
@@ -64,6 +64,6 @@ class MemberController extends Controller
         $member->user->delete();
         $member->delete();
 
-        return to_route('member.index');
+        return to_route('members.index');
     }
 }
