@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/members', MemberController::class)
         ->except(['create','edit','show','update']);
+
+    Route::resource('/categories', MemberController::class)
+        ->except(['create','edit','show','update']);
 });
 
 require __DIR__.'/auth.php';
