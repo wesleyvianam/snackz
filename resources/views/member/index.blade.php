@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="border-b p-2 flex justify-between items-center">
+    <div class="flex justify-between items-center pb-3">
         <h1 class="text-2xl font-bold">Members</h1>
 
         <x-primary-button x-data=""
@@ -9,7 +9,7 @@
 
         @include('member.partials.modal-create')
     </div>
-    <ul class="border rounded dark:border-white">
+    <ul class="rounded dark:border-white bg-gray-700">
         @foreach($members as $member)
             <li class="border-b p-2 flex justify-between items-center">
                 <p>{{ $member->name }}</p>
