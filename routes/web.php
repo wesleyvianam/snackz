@@ -20,9 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {    return view('home');})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,7 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/setting', [settingsController::class, 'index'])->name('setting.index');
 
-    Route::resource('/member', MemberController::class)
+    Route::resource('/members', MemberController::class)
         ->except(['create','edit','show','update']);
 });
 
