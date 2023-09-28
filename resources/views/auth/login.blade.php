@@ -40,6 +40,6 @@
             @endif
         </div>
 
-        <x-primary-button>{{ __('Log in') }}</x-primary-button>
+        <x-primary-button-full>{{ __('Log in') }}</x-primary-button-full>
     </form>
 </x-guest-layout>
