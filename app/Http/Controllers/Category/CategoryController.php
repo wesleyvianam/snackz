@@ -7,23 +7,22 @@ use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $categories = Category::where('workspace_id', Auth::user()->workspace_id)->get();
+        $categories = Category::where('workspace_id', $this->getWorkspaceId())->get();
 
         return view('categories.index', compact('categories'));
     }
 
     public function store(Request $request): RedirectResponse
     {
-        $workspace = $this->getWorkspace();
-
         $category = Category::create([
             'title' => $request->title,
-            'workspace_id' => $workspace
+            'workspace_id' => $this->getWorkspaceId()
         ]);
 
         return to_route('categories.index');

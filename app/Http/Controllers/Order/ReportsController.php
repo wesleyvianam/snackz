@@ -9,7 +9,7 @@ class ReportsController extends Controller
 {
     public function listAll()
     {
-        $workspace = $this->getWorkspace();
+        $workspace = $this->getWorkspaceId();
 
         $orders = Member::where('workspace_id', $workspace->id)
             ->with('orders.snack')->get();

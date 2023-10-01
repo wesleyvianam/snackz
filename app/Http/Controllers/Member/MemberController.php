@@ -9,38 +9,29 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $workspace = $this->getWorkspace();
+        $workspace = $this->getWorkspaceId();
 
-        $members = $workspace->members()->get();
+        $members = Member::where('workspace_id', $workspace)->get();
 
         return view('members.index', compact('members'));
     }
 
     public function show(Member $member)
     {
-        $user = User::where('id', $member->user_id)->get();
-        $workspace = $this->getWorkspace();
-
-        return response()->json([
-            'id' => $member->id,
-            'username' => $user[0]->username,
-            'company' => $workspace->name,
-            'name' => $member->name,
-            'email' => $user[0]->email,
-            'user_id' => $user[0]->id,
-        ]);
+        return view('members.show', compact($member));
     }
 
     public function store(Request $request): RedirectResponse
     {
-        $workspace = $this->getWorkspace();
+        $workspaceId = $this->getWorkspaceId();
 
-        DB::transaction(function () use ($request, $workspace) {
+        DB::transaction(function () use ($request, $workspaceId) {
             $user = User::create([
                 "username" => $request->username,
                 "email" => $request->email,
@@ -51,7 +42,7 @@ class MemberController extends Controller
 
             $user->member()->create([
                 "name" => $request->name,
-                "workspace_id" => $workspace->id,
+                "workspace_id" => $workspaceId,
                 "user_id" => $user->id,
             ]);
         });

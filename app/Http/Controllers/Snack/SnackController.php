@@ -5,16 +5,15 @@ namespace App\Http\Controllers\Snack;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Snack;
-use App\Models\Workspace;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class SnackController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $workspace = $this->getWorkspace();
+        $workspace = $this->getWorkspaceId();
         $snacks = Snack::where('workspace_id', $workspace)->get();
         $categories = Category::where('workspace_id', $workspace)->get();
 
@@ -31,22 +30,20 @@ class SnackController extends Controller
         $snack = Snack::create([
             "name" => $request->name,
             "category_id" => $request->category,
-            "workspace_id" => $this->getWorkspace()
+            "workspace_id" => $this->getWorkspaceId()
         ]);
 
         return to_route('snacks.index');
     }
 
-    public function update(Category $category, Snack $snack, Request $request)
+    public function update(Category $category, Snack $snack, Request $request): RedirectResponse
     {
-        $snack->update([
-            "name" => $request->name
-        ]);
+        $snack->update(["name" => $request->name]);
 
         return to_route('snacks.index');
     }
 
-    public function destroy(Snack $snack)
+    public function destroy(Snack $snack): RedirectResponse
     {
         $snack->delete();
 

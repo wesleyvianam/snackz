@@ -5,17 +5,11 @@ namespace App\Http\Controllers\Workspace;
 use App\Http\Controllers\Controller;
 use App\Models\Workspace;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class WorkspaceController extends Controller
 {
-    public function index()
-    {
-        $workspace = $this->getWorkspace();
-
-        return response()->json($workspace);
-    }
-
-    public function update(Workspace $workspace, Request $request)
+    public function update(Workspace $workspace, Request $request): RedirectResponse
     {
         $workspace->update([
             "name" => $request->name,
@@ -23,6 +17,6 @@ class WorkspaceController extends Controller
             "snack_time" => $request->snack_time
         ]);
 
-        return response()->json($workspace);
+        return to_route('');
     }
 }
