@@ -28,6 +28,11 @@ class Workspace extends Model
         return $this->hasMany(Category::class);
     }
 
+    public function snacks(): HasMany
+    {
+        return $this->hasMany(Snack::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
