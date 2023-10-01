@@ -5,16 +5,15 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $workspace = $this->getWorkspace();
+        $categories = Category::where('workspace_id', Auth::user()->workspace_id)->get();
 
-        $categories = Category::where('workspace_id', $workspace->id)->get();
-
-        return response()->json($categories);
+        return view('categories.index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -26,7 +25,7 @@ class CategoryController extends Controller
             'workspace_id' => $workspace->id
         ]);
 
-        return response()->json($category);
+        return to_route('categories.index');
     }
 
     public function update(Category $category, Request $request)
@@ -35,11 +34,13 @@ class CategoryController extends Controller
             'title' => $request->title
         ]);
 
-        return response()->json($category);
+        return to_route('categories.index');
     }
 
-    public function destroy()
+    public function destroy(Category $category)
     {
-        return response()->json("implementar softdelete");
+        $category->delete();
+
+        return to_route('categories.index');
     }
 }
