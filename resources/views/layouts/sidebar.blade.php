@@ -4,7 +4,7 @@
             <i class="bi bi-house-fill pe-4"></i>
             <a href="/home">Home</a>
         </li>
-        @if (auth()->user()->super == 1)
+        @if (auth()->user()->super)
             <li class="p-2 my-1 rounded-full px-8 hover:bg-gray-700 @if(Request::is('members')) bg-gray-700 @endif">
                 <i class="bi bi-people-fill pe-4"></i>
                 <a href="/members">Members</a>
