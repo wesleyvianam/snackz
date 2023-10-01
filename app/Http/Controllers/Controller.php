@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function getWorkspace()
+    protected function getWorkspaceId()
     {
         return Auth::user()->workspace_id;
     }
