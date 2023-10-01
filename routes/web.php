@@ -3,6 +3,7 @@
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Snack\SnackController;
 use App\Http\Controllers\User\settingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
         ->except(['create','edit','show','update']);
 
     Route::resource('/categories', CategoryController::class)
+        ->except(['create','edit','show','update']);
+
+    Route::resource('/snacks', SnackController::class)
         ->except(['create','edit','show','update']);
 });
 
