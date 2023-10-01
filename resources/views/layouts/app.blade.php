@@ -24,7 +24,7 @@
                 <div class="w-1/4 pe-4">
                     @include('layouts.sidebar')
                 </div>
-                <div class="w-3/4 dark:text-white bg-gray-800 rounded-3xl p-4">
+                <div class="w-3/4 dark:text-white bg-gray-800 rounded-3xl p-6">
                     {{ $slot }}
                 </div>
             </main>
