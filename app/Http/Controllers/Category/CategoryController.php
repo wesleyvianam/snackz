@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
         $category = Category::create([
             'title' => $request->title,
-            'workspace_id' => $workspace->id
+            'workspace_id' => $workspace
         ]);
 
         return to_route('categories.index');
