@@ -5,25 +5,36 @@ namespace App\Http\Controllers\Snack;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Snack;
+use App\Models\Workspace;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SnackController extends Controller
 {
-    public function index(Category $category)
+    public function index()
     {
-        $snack = $category->snacks()->get();
+        $workspace = $this->getWorkspace();
+        $snacks = Snack::where('workspace_id', $workspace)->get();
+        $categories = Category::where('workspace_id', $workspace)->get();
 
-        return response()->json($snack);
+        $formatCategories = [];
+        foreach ($categories as $category) {
+            $formatCategories[$category->id] = $category->title;
+        }
+
+        return view('snacks.index', compact('snacks', 'formatCategories'));
     }
 
-    public function store(Category $category, Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $snack = Snack::create([
             "name" => $request->name,
-            "category_id" => $category->id
+            "category_id" => $request->category,
+            "workspace_id" => $this->getWorkspace()
         ]);
 
-        return response()->json($snack);
+        return to_route('snacks.index');
     }
 
     public function update(Category $category, Snack $snack, Request $request)
@@ -32,11 +43,13 @@ class SnackController extends Controller
             "name" => $request->name
         ]);
 
-        return response()->json($snack);
+        return to_route('snacks.index');
     }
 
-    public function destroy(Category $category, Snack $snack)
+    public function destroy(Snack $snack)
     {
-        return response()->json("Remove code");
+        $snack->delete();
+
+        return to_route('snacks.index');
     }
 }
