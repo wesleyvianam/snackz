@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\settingsController;
@@ -32,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/members', MemberController::class)
         ->except(['create','edit','show','update']);
 
-    Route::resource('/categories', MemberController::class)
+    Route::resource('/categories', CategoryController::class)
         ->except(['create','edit','show','update']);
 });
 
