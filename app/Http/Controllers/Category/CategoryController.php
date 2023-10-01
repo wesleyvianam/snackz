@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $workspace = $this->getWorkspace();
 
@@ -28,7 +29,7 @@ class CategoryController extends Controller
         return to_route('categories.index');
     }
 
-    public function update(Category $category, Request $request)
+    public function update(Category $category, Request $request): RedirectResponse
     {
         $category->update([
             'title' => $request->title
@@ -37,7 +38,7 @@ class CategoryController extends Controller
         return to_route('categories.index');
     }
 
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
 
