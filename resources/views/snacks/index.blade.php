@@ -8,6 +8,11 @@
     </div>
 
     <x-list route="snacks"
-            :data="$snacks"
-            emptyMessage="Tralala" />
+        :data="$snacks"
+        :params="[
+            'name',
+            'category'
+        ]"
+        emptyMessage="Nenhum lanche cadastrado"
+    />
 </x-app-layout>
