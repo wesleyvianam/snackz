@@ -22,6 +22,10 @@ class SnackController extends Controller
             $formatCategories[$category->id] = $category->title;
         }
 
+        foreach ($snacks as $keys => $snack) {
+            $snacks[$keys]['category'] = $formatCategories[$snack->category_id];
+        }
+
         return view('snacks.index', compact('snacks', 'formatCategories'));
     }
 
