@@ -6,20 +6,10 @@
 
         @include('members.partials.modal-create')
     </div>
-    <ul class="rounded dark:border-white bg-gray-700">
-        @foreach($members as $member)
-            <li class="border-b p-2 flex justify-between items-center">
-                <p>{{ $member->name }}</p>
 
-                @if($member->id != auth()->user()->id)
-                    <form action="{{ route('members.destroy', $member->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-
-                        <button class="rounded py-1 px-2 bg-red-500">Deletar</button>
-                    </form>
-                @endif
-            </li>
-        @endforeach
-    </ul>
+    <x-list
+        route="members"
+        :data="$members"
+        :params="['name']"
+    />
 </x-app-layout>
