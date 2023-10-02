@@ -1,10 +1,14 @@
-@props(['data', 'route', 'emptyMessage'])
+@props(['data' => [], 'params' => [], 'route', 'emptyMessage'])
 
 <ul class="rounded-lg dark:border-white bg-gray-700">
     @if (!empty($data))
         @foreach($data as $item)
             <li class="border-b border-gray-800 p-2 flex justify-between items-center">
-                <p>{{ $item->name ?: $item->title }}</p>
+                @if (!empty($params))
+                    @foreach($params as $param)
+                        <p>{{ $item->$param ?: '<? NOT_FOUND ?>' }}</p>
+                    @endforeach
+                @endif
 
                 <form action="{{ route("$route.destroy", $item->id) }}" method="post">
                     @csrf
