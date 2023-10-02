@@ -11,5 +11,6 @@
         route="members"
         :data="$members"
         :params="['name']"
+        :exception="auth()->user()->id"
     />
 </x-app-layout>
