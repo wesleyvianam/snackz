@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Member\MemberController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Snack\SnackController;
 use App\Http\Controllers\User\settingsController;
@@ -22,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {    return view('home');})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/home', function () {    return view('home');})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
         ->except(['create','edit','show','update']);
 
     Route::resource('/snacks', SnackController::class)
+        ->except(['create','edit','show','update']);
+
+    Route::resource('/home', OrderController::class)
         ->except(['create','edit','show','update']);
 });
 
