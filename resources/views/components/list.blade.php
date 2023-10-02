@@ -1,4 +1,4 @@
-@props(['data' => [], 'params' => [], 'route', 'emptyMessage'])
+@props(['data' => [], 'params' => [], 'cannotDelete' => null, 'route', 'emptyMessage'])
 
 <ul class="rounded-lg dark:border-white bg-gray-700">
     @if (!empty($data))
@@ -10,14 +10,16 @@
                     @endforeach
                 @endif
 
-                <form action="{{ route("$route.destroy", $item->id) }}" method="post">
-                    @csrf
-                    @method('DELETE')
+                @if ($item->id != $cannotDelete)
+                    <form action="{{ route("$route.destroy", $item->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
 
-                    <button class="rounded py-1 px-2 bg-red-500">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </form>
+                        <button class="rounded py-1 px-2 bg-red-500">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                @endif
             </li>
         @endforeach
     @else
