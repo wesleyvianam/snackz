@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\SnackTemplate;
 use Illuminate\Http\Request;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $menu = Category::where('workspace_id', $this->getWorkspaceId())->with('snacks')->get();
+
+       return view('orders.index',compact('menu'));
+    }
+
     public function store(Request $request)
     {
         $user = Auth::user();
