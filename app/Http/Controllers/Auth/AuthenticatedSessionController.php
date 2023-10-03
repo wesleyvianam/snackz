@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->config == 0) {
+        if (Auth::user()->super && !Auth::user()->config) {
             return to_route('setting.index');
         }
 
