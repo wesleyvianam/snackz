@@ -4,44 +4,72 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Member;
 use App\Models\Order;
 use App\Models\SnackTemplate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $menu = Category::where('workspace_id', $this->getWorkspaceId())->with('snacks')->get();
+        $categories = Category::where('workspace_id', $this->getWorkspaceId())->with('snacks')->get();
 
-       return view('orders.index',compact('menu'));
+        $orders = DB::table('orders as o')
+            ->join('members as m', 'm.id', '=','o.member_id')
+            ->join('snacks as s', 's.id', '=','o.snack_id')
+            ->join('categories as c', 'c.id', '=','s.category_id')
+            ->where('o.workspace_id', '=', $this->getWorkspaceId())
+            ->selectRaw("
+                m.name as member,
+                m.id as member_id,
+                s.name as snack,
+                s.id as snack_id,
+                c.title as category,
+                c.id as category_id
+            ")
+            ->get();
+
+        return view('orders.index', compact(
+            'categories',
+            'orders'
+        ));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $user = Auth::user();
+        $member = Member::where('user_id', Auth::user()->id)->get();
+        $workspaceId = $this->getWorkspaceId();
 
-        $orders = DB::transaction(function () use ($request, $user) {
-            $order = [];
-            foreach ($request->snack as $snack) {
-                $order[] = Order::create([
-                    'snack_id' => $snack['id'],
-                    'member_id' => $user->id,
+        $values = [];
+        foreach ($request->request as $key => $snack) {
+            if ($key != '_token' && $key != 'recurrent') {
+                $values[] = $snack;
+            }
+        }
+
+        DB::transaction(function () use ($request, $member, $values, $workspaceId) {
+            foreach ($values as $snack) {
+                Order::create([
+                    'snack_id' => $snack,
+                    'member_id' => $member[0]->id,
+                    'workspace_id' => $workspaceId
                 ]);
 
                 if ($request->recurrent) {
                     SnackTemplate::create([
-                        'snack_id' => $snack['id'],
-                        'member_id' => $user->id,
+                        'snack_id' => $snack,
+                        'member_id' => $member[0]->id,
+                        'workspace_id' => $workspaceId
                     ]);
                 }
             }
-
-            return $order;
         });
 
-        return response()->json($orders);
+        return to_route('home.index');
     }
 }
