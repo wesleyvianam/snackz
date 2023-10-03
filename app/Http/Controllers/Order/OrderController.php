@@ -34,9 +34,15 @@ class OrderController extends Controller
             ")
             ->get();
 
+        $ordersDetails = [];
+        foreach ($orders as $order) {
+            $ordersDetails[$order->member_id]['name'] = $order->member;
+            $ordersDetails[$order->member_id]['snack'][] = $order->snack;
+        }
+
         return view('orders.index', compact(
             'categories',
-            'orders'
+            'ordersDetails'
         ));
     }
 
