@@ -2,22 +2,23 @@
     Orders
 </h1>
 <div class="grid grid-cols-3 gap-4">
-    @foreach($orders as $order)
+    @foreach($ordersDetails as $order)
+{{--        @dd($order)--}}
         <div class="border rounded-lg">
-            <h2 class="text-center">{{ $order->member }}</h2>
-            <table class="border-t w-full dark:text-white">
-                <thead>
-                    <tr>
-                       <th>Item</th>
-                       <th>Qtd</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="m-3">{{ $order->snack }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2 class="text-center">{{ $order['name'] }}</h2>
+            <hr>
+            <ul class="w-full dark:text-white mx-4">
+                <li class="flex items-center justify-between">
+                    <p class="text-start text-bold">Item</p>
+                    <p class="pr-10 text-bold">Qtd</p>
+                </li>
+                @foreach($order['snack'] as $snack)
+                    <li class="flex items-center justify-between">
+                        <p class="">{{ $snack }}</p>
+                        <p class="pr-10">1</p>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     @endforeach
 </div>
