@@ -40,9 +40,21 @@ class OrderController extends Controller
             $ordersDetails[$order->member_id]['snack'][] = $order->snack;
         }
 
+        $ordersResume = [];
+        foreach ($orders as $order) {
+            $ordersResume[$order->category_id]['title'] = $order->category;
+
+            empty($ordersResume[$order->category_id]['snack'][$order->snack_id])
+                ? $ordersResume[$order->category_id]['snack'][$order->snack_id]['qtd'] = 1
+                : $ordersResume[$order->category_id]['snack'][$order->snack_id]['qtd'] += 1;
+
+            $ordersResume[$order->category_id]['snack'][$order->snack_id]['title'] = $order->snack;
+        }
+
         return view('orders.index', compact(
             'categories',
-            'ordersDetails'
+            'ordersDetails',
+            'ordersResume'
         ));
     }
 
