@@ -1,11 +1,11 @@
-<h1 class="text-xl font-bold">
+<h1 class="text-xl font-bold mb-4">
     Orders
 </h1>
 <div class="grid grid-cols-3 gap-4">
     @foreach($ordersDetails as $order)
 {{--        @dd($order)--}}
-        <div class="border rounded-lg">
-            <h2 class="text-center">{{ $order['name'] }}</h2>
+        <div class="border rounded-lg bg-gray-600">
+            <h2 class="text-center py-2">{{ $order['name'] }}</h2>
             <hr>
             <ul class="w-full dark:text-white mx-4">
                 <li class="flex items-center justify-between">

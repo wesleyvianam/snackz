@@ -6,7 +6,7 @@
 </style>
 
 <x-app-layout>
-        <div x-data="{ activeTab: 'resume' }" class="">
+        <div x-data="{ activeTab: 'orders' }" class="">
             <ul class="dark:text-white flex justify-center border-b">
                 <li @click="activeTab = 'orders'" :class="{ 'rounded-t-lg bg-gray-800 dark:bg-gray-200 dark:text-black': activeTab === 'orders' }">Orders</li>
                 <li @click="activeTab = 'resume'" :class="{ 'rounded-t-lg bg-gray-800 dark:bg-gray-200 dark:text-black': activeTab === 'resume' }">Details</li>
