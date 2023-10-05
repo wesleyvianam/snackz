@@ -1,9 +1,9 @@
 @props(['data' => [], 'params' => [], 'cannotDelete' => null, 'route', 'emptyMessage'])
 
-<ul class="rounded-lg dark:border-white bg-gray-700">
+<ul class="rounded-lg bg-gray-100 border dark:border-white dark:bg-gray-700">
     @if (!empty($data))
         @foreach($data as $item)
-            <li class="border-b border-gray-800 p-2 flex justify-between items-center">
+            <li class="border-b dark:border-gray-800 p-2 flex justify-between items-center">
                 @if (!empty($params))
                     @foreach($params as $param)
                         <p>{{ $item->$param ?: '<? NOT_FOUND ?>' }}</p>
@@ -16,7 +16,7 @@
                         @method('DELETE')
 
                         <button class="rounded py-1 px-2 bg-red-500">
-                            <i class="bi bi-trash"></i>
+                            <i class="bi bi-trash text-white"></i>
                         </button>
                     </form>
                 @endif
