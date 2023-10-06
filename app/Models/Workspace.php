@@ -36,7 +36,7 @@ class Workspace extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function settings(): HasOne
+    public function setting(): HasOne
     {
         return $this->hasOne(WorkspaceSetting::class);
     }
