@@ -10,6 +10,12 @@ class WorkspaceSetting extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "snack_time",
+        "recurrent",
+        "workspace_id"
+    ];
+
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);
