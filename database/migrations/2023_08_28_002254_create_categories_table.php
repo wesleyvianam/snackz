@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
 
-            $table->foreignId('workspace_id')->constrained();
-
             $table->timestamps();
             $table->softDeletes();
         });
