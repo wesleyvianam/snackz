@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('workspaces', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->integer('config');
+            $table->tinyInteger('config');
 
             $table->timestamps();
         });
