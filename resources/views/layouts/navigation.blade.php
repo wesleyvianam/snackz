@@ -5,7 +5,12 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('orders.index') }}">
-                        <h1 class="font-bold text-3xl dark:text-white">Snackz</h1>
+                        <h1 class="font-bold text-3xl dark:text-white">
+                            Snackz
+                            <small class="text-sm font-light">
+                                BETA
+                            </small>
+                        </h1>
                     </a>
                 </div>
             </div>
