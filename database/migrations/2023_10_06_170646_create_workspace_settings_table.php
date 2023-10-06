@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('workspace_settings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->boolean('recurrent')->nullable();
+            $table->tinyInteger('recurrent')->nullable();
             $table->time('snack_time')->nullable();
         });
     }
