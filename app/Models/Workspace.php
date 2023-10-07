@@ -14,6 +14,7 @@ class Workspace extends Model
 
     protected $fillable = [
         'name',
+        'config'
     ];
 
     public function members(): HasMany
