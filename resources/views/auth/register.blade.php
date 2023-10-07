@@ -16,19 +16,6 @@
         </div>
 
         <div class="mt-4">
-            <x-text-input id="username"
-                          class="block mt-1 w-full"
-                          type="text"
-                          name="username"
-                          :value="old('username')"
-                          required autofocus
-                          autocomplete="username"
-                          placeholder="username"/>
-
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <div class="mt-4">
             <x-text-input id="email"
                 class="block mt-1 w-full"
                 type="email"
