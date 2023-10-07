@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
+use App\Models\Workspace;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -38,26 +38,22 @@ class RegisteredUserController extends Controller
         ]);
 
         $newUser = DB::transaction(function() use($request) {
+            $workspace = Workspace::create([
+                'config' => 0
+            ]);
+
             $user = User::create([
-                'username' => $request->username,
+                'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'config' => 0,
-                'super' => 1,
-            ]);
-
-            $workspace = $user->workspace()->create([
-                'user_id' => $user->id
-            ]);
-
-            $user->member()->create([
-                'name' => $request->name,
-                'user_id' => $user->id,
                 'workspace_id' => $workspace->id,
+                'super' => 1
             ]);
 
-            $user->update([
-                'workspace_id' => $workspace->id
+            $workspace->setting()->create([
+                'workspace_id' => $workspace->id,
+                'time' => '00:00:00',
+                'recurent' => 0,
             ]);
 
             return $user;
