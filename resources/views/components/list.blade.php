@@ -1,9 +1,9 @@
 @props(['data' => [], 'params' => [], 'cannotDelete' => null, 'route', 'emptyMessage'])
 
-<ul class="rounded-lg bg-gray-100 border dark:border-white dark:bg-gray-700">
+<ul class="rounded-lg bg-red-50 border border-red-100 dark:border-red-200 dark:bg-gray-700">
     @if (!empty($data))
         @foreach($data as $item)
-            <li class="border-b dark:border-gray-800 p-2 flex justify-between items-center">
+            <li class="p-2 hover:bg-red-100 flex justify-between items-center">
                 @if (!empty($params))
                     @foreach($params as $param)
                         <p>{{ $item->$param ?: '<? NOT_FOUND ?>' }}</p>
