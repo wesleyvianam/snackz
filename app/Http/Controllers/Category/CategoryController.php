@@ -25,7 +25,7 @@ class CategoryController extends Controller
             'workspace_id' => $this->getWorkspaceId()
         ]);
 
-        return to_route('categories.index');
+        return to_route('categories.index')->with(['success' => "Category $category->title created Successfully"]);
     }
 
     public function update(Category $category, Request $request): RedirectResponse
@@ -41,6 +41,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return to_route('categories.index');
+        return to_route('categories.index')->with(['success' => "Category $category->title deleted Successfully"]);
     }
 }
