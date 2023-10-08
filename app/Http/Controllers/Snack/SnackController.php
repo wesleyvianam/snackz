@@ -37,7 +37,7 @@ class SnackController extends Controller
             "workspace_id" => $this->getWorkspaceId()
         ]);
 
-        return to_route('snacks.index');
+        return to_route('snacks.index')->with(['success' => "Snack $snack->name created Successfully"]);
     }
 
     public function update(Category $category, Snack $snack, Request $request): RedirectResponse
@@ -51,6 +51,6 @@ class SnackController extends Controller
     {
         $snack->delete();
 
-        return to_route('snacks.index');
+        return to_route('snacks.index')->with(['success' => "Snack $snack->name deleted Successfully"]);
     }
 }
