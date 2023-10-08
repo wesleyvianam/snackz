@@ -17,7 +17,21 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body x-cloak x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode === true }" class="antialiased font-sans">
-        <div class="px-96 pt-16 min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="px-96 pt-20 min-h-screen bg-gray-100 dark:bg-gray-900">
+            @if(session('success'))
+                <div class="absolute top-3 transition duration-300 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <p class="font-medium">{{ session('success') }}</p>
+                </div>
+            @endif
+
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="absolute top-3 transition duration-300 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="font-medium">{{ $error }}</span>
+                    </div>
+                @endforeach
+            @endif
+
             @include('layouts.navigation')
 
             <main class="flex pt-4">
