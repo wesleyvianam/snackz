@@ -1,21 +1,47 @@
-<div class="rounded-3xl bg-white dark:bg-gray-800 p-4 text-gray-900 dark:text-white">
-    <ul class="w-full">
-        <li class="p-2 my-1 rounded-full px-8 hover:bg-gray-100 dark:hover:bg-gray-700 @if(Request::is('home')) bg-gray-100 dark:bg-gray-700 @endif">
-            <i class="bi bi-house-fill pe-4"></i>
+<div class="rounded-3xl bg-white dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white">
+    <ul class="w-full hidden md:block">
+        <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('home')) bg-red-100 dark:bg-gray-700 @endif">
+            <i class="bi bi-house-fill pe-2 text-red-400"></i>
             <a href="/home">Home</a>
         </li>
         @if (auth()->user()->super)
-            <li class="p-2 my-1 rounded-full px-8 hover:bg-gray-100 dark:hover:bg-gray-700 @if(Request::is('members')) bg-gray-100 dark:bg-gray-700 @endif">
-                <i class="bi bi-people-fill pe-4"></i>
+            <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('members')) bg-red-100 dark:bg-gray-700 @endif">
+                <i class="bi bi-people-fill pe-2 text-red-400"></i>
                 <a href="/members">Members</a>
             </li>
-            <li class="p-2 my-1 rounded-full px-8 hover:bg-gray-100 dark:hover:bg-gray-700 @if(Request::is('categories')) bg-gray-100 dark:bg-gray-700 @endif">
-                <i class="bi bi-list-ul pe-4"></i>
+            <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('categories')) bg-red-100 dark:bg-gray-700 @endif">
+                <i class="bi bi-list-ul pe-2 text-red-400"></i>
                 <a href="/categories">Categories</a>
             </li>
-            <li class="p-2 my-1 rounded-full px-8 hover:bg-gray-100 dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-gray-100 dark:bg-gray-700 @endif">
-                <i class="bi bi-cup-hot-fill pe-4"></i>
+            <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-red-100 dark:bg-gray-700 @endif">
+                <i class="bi bi-cup-hot-fill pe-2 text-red-400"></i>
                 <a href="/snacks">Snacks</a>
+            </li>
+        @endif
+    </ul>
+
+    {{-- Responsible --}}
+    <ul class="w-full md:hidden">
+        <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('home')) bg-red-100 dark:bg-gray-700 @endif">
+            <a href="/home">
+                <i class="bi bi-house-fill px-2 text-red-400"></i>
+            </a>
+        </li>
+        @if (auth()->user()->super)
+            <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('members')) bg-red-100 dark:bg-gray-700 @endif">
+                <a href="/members">
+                    <i class="bi bi-people-fill px-2 text-red-400"></i>
+                </a>
+            </li>
+            <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('categories')) bg-red-100 dark:bg-gray-700 @endif">
+                <a href="/categories">
+                    <i class="bi bi-list-ul px-2 text-red-400"></i>
+                </a>
+            </li>
+            <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-red-100 dark:bg-gray-700 @endif">
+                <a href="/snacks">
+                    <i class="bi bi-cup-hot-fill px-2 text-red-400"></i>
+                </a>
             </li>
         @endif
     </ul>
