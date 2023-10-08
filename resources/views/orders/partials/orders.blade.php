@@ -1,5 +1,5 @@
-<div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-3">
-    @if(!empty($ordersResume))
+@if(!empty($ordersResume))
+    <div class="bg-red-50 dark:bg-gray-700 rounded-xl p-3">
         <table class="dark:text-white w-full mb-4 rounded-b-lg">
             <thead>
                 <tr class="bg-gray-300 dark:bg-gray-900 rounded-t-lg">
@@ -18,9 +18,9 @@
                 @endforeach
             </tbody>
         </table>
-    @else
-        <div>
-            <i>Nenhum pedido realizado.</i>
-        </div>
-    @endif
-</div>
+    </div>
+@else
+    <div class="bg-red-50 text-gray-800 border border-red-100 dark:text-gray-200 dark:bg-gray-700 rounded-xl p-3">
+        <i>Nenhum pedido realizado.</i>
+    </div>
+@endif
