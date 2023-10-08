@@ -12,8 +12,9 @@ class Order extends Model
 
     protected $fillable = [
         'snack_id',
-        'member_id',
-        'workspace_id'
+        'user_id',
+        'workspace_id',
+        'recurrent'
     ];
 
     public function snack(): BelongsTo
