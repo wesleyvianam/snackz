@@ -3,7 +3,7 @@
         @csrf
 
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Create a new snack') }}
+            {{ __('A') }}
         </h2>
 
         <p class="text-md font-light text-gray-900 dark:text-gray-100">
@@ -27,10 +27,11 @@
                     name="name"
                     type="text"
                     class="w-full"
+                    required
                     placeholder="{{ __('Name') }}"
                 />
 
-                <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+                <x-input-error :messages="$errors->userDeletion->get('name')" class="mt-2" />
             </div>
         </div>
 

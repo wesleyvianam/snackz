@@ -18,6 +18,7 @@
                 name="title"
                 type="text"
                 class="mt-1 block w-full"
+                required
                 placeholder="{{ __('Title') }}"
             />
 
