@@ -1,25 +1,46 @@
-<form action="{{ route('home.store') }}" method="post">
-    @csrf
+<div class="bg-red-50 dark:bg-gray-700 border border-red-100 dark:border-gray-500 pt-3 px-3 rounded-xl">
+    <form action="{{ route('home.store') }}" method="post">
+        @csrf
 
-    @foreach($categories as $category)
-        <div class="mb-4">
-            <h2 class="text-3xl font-bold">{{ $category->title }}</h2>
+        @foreach($categories as $category)
+            <div class="mb-4">
+                @if (!empty($category->snacks[0]))
+                    <h2 class="text-xl font-bold text-red-500">{{ $category->title.':' }}</h2>
 
-            @foreach($category->snacks as $snack)
-                <div>
-                    <label for="{{ $snack->name }}">{{ $snack->name }}</label>
-                    <input type="radio" id="{{ $snack->name }}" name="{{ $category->title }}" value="{{ $snack->id }}" />
-                </div>
-            @endforeach
+                    <div class="flex items-center">
+                        @foreach($category->snacks as $snack)
+                            <div class="flex items-center mr-4">
+                                <input type="radio" value="" id="{{ $snack->name }}" name="{{ $category->title }}" class="w-4 h-4 text-red-600 bg-white border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="{{ $snack->name }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $snack->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        @endforeach
+
+        <div x-data="{ active: false }">
+            <h2 class="text-xl font-bold text-red-500">
+                Pedido recorrente:
+            </h2>
+
+            <label class="mt-2 mb-4 relative inline-flex items-center cursor-pointer">
+                <input @click="active = !active" id="recurrent" name="recurrent" type="checkbox" value="" class="sr-only peer">
+                <div class="w-11 h-6 bg-red-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-200 dark:peer-focus:ring-red-300 rounded-full peer dark:bg-gray-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-500"></div>
+                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Recorrente</span>
+            </label>
+
+            <p x-show="active" class="text-sm p-2 border border-red-300 bg-white dark:bg-gray-800 rounded-lg text-gray-800">
+                <i class="bi bi-exclamation-triangle-fill text-red-500 pe-1"></i>
+                Ao escolher que o pedido seja recorrente, todos os dias esse pedido será realizado, caso em algum dia
+                você não queira pedir, terá que desativar ou excluir o pedido caso já tenha sido pedido.
+            </p>
         </div>
-    @endforeach
+    </form>
+</div>
 
-    <div class="mb-4">
-        <h2 class="text-3xl font-bold">Seu pedido será recorrent?</h2>
-        <p>lorem impson</p>
-        <label for="recurrent">Is recurrent</label>
-        <input type="checkbox" id="recurrent" name="recurrent" />
-    </div>
+<div class="flex justify-end mt-4">
+    <x-secondary-button class="me-1">Limpar</x-secondary-button>
 
-    <x-primary-button class="float-right">Save</x-primary-button>
-</form>
+    <x-primary-button>Salvar</x-primary-button>
+</div>
