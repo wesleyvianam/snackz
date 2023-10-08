@@ -15,9 +15,7 @@ class MemberController extends Controller
 {
     public function index(): View
     {
-        $workspace = $this->getWorkspaceId();
-
-        $members = Member::where('workspace_id', $workspace)->get();
+        $members = User::where('workspace_id', $this->getWorkspaceId())->get();
 
         return view('members.index', compact('members'));
     }
@@ -29,35 +27,28 @@ class MemberController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $workspaceId = $this->getWorkspaceId();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        ]);
 
-        DB::transaction(function () use ($request, $workspaceId) {
-            $user = User::create([
-                "username" => $request->username,
-                "email" => $request->email,
-                "password" => Hash::make("e46a73d1"),
-                "config" => 0,
-                "super" => 0,
-                "workspace_id" => $workspaceId
-            ]);
+        $user = User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make("e46a73d1"),
+            "super" => 0,
+            "workspace_id" => $this->getWorkspaceId()
+        ]);
 
-            $user->member()->create([
-                "name" => $request->name,
-                "workspace_id" => $workspaceId,
-                "user_id" => $user->id,
-            ]);
-        });
-
-        return to_route('members.index');
+        return to_route('members.index')->with(['success' => "User $user->name created successfully"]);
     }
 
-    public function destroy(Member $member): RedirectResponse
+    public function destroy(User $user): RedirectResponse
     {
-        if (!$member->user->super) {
-            $member->user->delete();
-            $member->delete();
+        if (!$user->super) {
+            $user->delete();
         }
 
-        return to_route('members.index');
+        return to_route('members.index')->with(['success' => "User $user->name deleted successfully"]);
     }
 }
