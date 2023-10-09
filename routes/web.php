@@ -32,8 +32,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/setting', [settingsController::class, 'index'])->name('setting.index');
 
-    Route::resource('/members', MemberController::class)
-        ->except(['create','edit','show','update']);
+    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+    Route::delete('/members/{user}', [MemberController::class, 'destroy'])->name('members.destroy');
 
     Route::resource('/categories', CategoryController::class)
         ->except(['create','edit','show','update']);
