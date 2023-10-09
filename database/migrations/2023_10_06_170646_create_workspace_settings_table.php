@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->tinyInteger('recurrent')->nullable();
             $table->time('snack_time')->nullable();
-            $table->foreignId('workspace_id')->constrained();
+            $table->foreignId('workspace_id')->constrained()->onDelete('cascade');;
         });
     }
 

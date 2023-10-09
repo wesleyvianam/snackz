@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('recurrent');
 
-            $table->foreignId('snack_id')->constrained();
+            $table->foreignId('snack_id')->constrained()->onDelete('cascade');
 
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-            $table->foreignId('workspace_id')->constrained();
+            $table->foreignId('workspace_id')->constrained()->onDelete('cascade');;
 
             $table->timestamps();
         });

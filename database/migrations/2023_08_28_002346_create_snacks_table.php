@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
 
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
 
-            $table->foreignId('workspace_id')->constrained();
+            $table->foreignId('workspace_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
             $table->softDeletes();
