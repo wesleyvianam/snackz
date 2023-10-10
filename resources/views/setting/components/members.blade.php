@@ -69,11 +69,11 @@
         </form>
 
         <div>
-            <x-secondary-button @click="setting = 'recurrent'">
+            <x-secondary-button @click="setting = 'recurrent'; percent -= 15">
                 voltar
             </x-secondary-button>
 
-            <x-primary-button @click="setting = 'snacks'">
+            <x-primary-button @click="setting = 'snacks'; percent += 15">
                 próximo
             </x-primary-button>
         </div>
