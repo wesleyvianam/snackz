@@ -6,11 +6,11 @@
     </form>
 
     <div>
-        <x-secondary-button @click="setting = 'company'">
+        <x-secondary-button @click="setting = 'member'; percent -= 15">
             voltar
         </x-secondary-button>
 
-        <x-primary-button @click="setting = 'snacks'">
+        <x-primary-button @click="setting = ''; percent += 15">
             próximo
         </x-primary-button>
     </div>
