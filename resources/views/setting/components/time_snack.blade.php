@@ -1,5 +1,5 @@
 <div>
-    <div class="flex">
+    <div class="flex items-center">
         <h1 class="text-2xl me-6">Qual o horário do lanche em sua empresa?</h1>
 
         <x-text-input id="email"
@@ -22,11 +22,11 @@
         </form>
 
         <div>
-            <x-secondary-button @click="setting = 'company'">
+            <x-secondary-button @click="setting = 'company'; percent -= 15">
                 voltar
             </x-secondary-button>
 
-            <x-primary-button @click="setting = 'recurrent'">
+            <x-primary-button @click="setting = 'recurrent'; percent += 15">
                 próximo
             </x-primary-button>
         </div>
