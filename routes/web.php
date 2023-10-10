@@ -4,8 +4,9 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\setting\CompanyController;
+use App\Http\Controllers\setting\SettingsController;
 use App\Http\Controllers\Snack\SnackController;
-use App\Http\Controllers\User\settingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/setting', [settingsController::class, 'index'])->name('setting.index');
+    // Config Workspace
+    Route::get('/setting', [SettingsController::class, 'index'])->name('setting.index');
+    Route::post('/company', [CompanyController::class, 'store'])->name('company.store');
 
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
     Route::post('/members', [MemberController::class, 'store'])->name('members.store');
