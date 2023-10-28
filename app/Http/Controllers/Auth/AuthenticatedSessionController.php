@@ -29,10 +29,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->super && !Auth::user()->config) {
-            return to_route('setting.index');
-        }
-
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
