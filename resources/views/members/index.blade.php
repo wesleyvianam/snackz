@@ -12,5 +12,6 @@
         :data="$members"
         :params="['name']"
         :exception="auth()->user()->id"
+        emptyMessage="Nenhum membro encontrado"
     />
 </x-app-layout>

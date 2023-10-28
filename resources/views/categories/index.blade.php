@@ -11,5 +11,6 @@
         route="categories"
         :data="$categories"
         :params="['title']"
+        emptyMessage="Nenhuma categoria cadastrada"
     />
 </x-app-layout>
