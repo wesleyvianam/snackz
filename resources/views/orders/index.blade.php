@@ -6,7 +6,7 @@
 </style>
 
 <x-app-layout>
-        <div x-data="{ activeTab: 'new' }" class="">
+        <div x-data="{ activeTab: 'orders' }" class="">
             <ul class="flex justify-center text-red-500 border-b border-red-400 dark:text-white text-center">
                 <li class="w-1/3"
                     @click="activeTab = 'orders'"
