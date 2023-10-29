@@ -22,6 +22,7 @@ class OrderController extends Controller
             ->join('snacks as s', 's.id', '=','o.snack_id')
             ->join('categories as c', 'c.id', '=','s.category_id')
             ->where('o.workspace_id', '=', $this->getWorkspaceId())
+            ->whereDate('o.created_at', '=',  now()->toDateString())
             ->selectRaw("
                 m.name as user,
                 m.id as user_id,
