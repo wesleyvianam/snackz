@@ -10,11 +10,11 @@
         </li>
         @if (auth()->user()->super)
             <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('members')) bg-red-100 dark:bg-gray-700 @endif">
-                <i class="bi bi-people-fill pe-2 text-red-400"></i>
+                <i class="ri-user-fill pe-2 text-red-400"></i>
                 <a href="/members">Members</a>
             </li>
             <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('categories')) bg-red-100 dark:bg-gray-700 @endif">
-                <i class="bi bi-list-ul pe-2 text-red-400"></i>
+                <i class="ri-list-indefinite pe-2 text-red-400"></i>
                 <a href="/categories">Categories</a>
             </li>
             <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-red-100 dark:bg-gray-700 @endif">
@@ -39,12 +39,12 @@
         @if (auth()->user()->super)
             <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('members')) bg-red-100 dark:bg-gray-700 @endif">
                 <a href="/members">
-                    <i class="bi bi-people-fill px-2 text-red-400"></i>
+                    <i class="ri-user-fill px-2 text-red-400"></i>
                 </a>
             </li>
             <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('categories')) bg-red-100 dark:bg-gray-700 @endif">
                 <a href="/categories">
-                    <i class="bi bi-list-ul px-2 text-red-400"></i>
+                    <i class="ri-list-indefinite px-2 text-red-400"></i>
                 </a>
             </li>
             <li class="p-2 my-1 rounded-2xl hover:bg-red-50 text-sm dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-red-100 dark:bg-gray-700 @endif">
