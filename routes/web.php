@@ -4,6 +4,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Recurrent\RecurrentController;
 use App\Http\Controllers\setting\CompanyController;
 use App\Http\Controllers\setting\SettingsController;
 use App\Http\Controllers\Snack\SnackController;
@@ -24,8 +25,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/home', function () {    return view('home');})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -43,6 +42,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/home', OrderController::class)
         ->except(['create','edit','show','update']);
+
+    Route::resource('/recurrent', RecurrentController::class)
+        ->except(['create','edit','show','update']);
+
+    Route::put('/recurrent/{order}', [RecurrentController::class, 'update'])
+        ->name('recurrent.update');
 });
 
 require __DIR__.'/auth.php';
