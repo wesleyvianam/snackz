@@ -7,11 +7,12 @@
         @if (!empty($orders))
             @foreach($orders as $order)
                 <li class="p-3">
-                    {{ $order['title'] }}
+                    <h2 class="border-b">
+                        {{ $order['title'] }}
+                    </h2>
 
-                    <hr class="my-2">
                     @foreach($order['orders'] as $snack)
-                        <span class="p-2 px-4 rounded-lg flex items-center justify-between hover:bg-red-50">
+                        <span class="p-2 px-4 flex items-center justify-between hover:bg-red-50">
                             {{ $snack['title'] }}
 
                             <form action="{{ route('recurrent.update', $snack['id']) }}" method="post">
