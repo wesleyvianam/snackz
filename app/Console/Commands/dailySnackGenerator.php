@@ -2,18 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\User\RecoverController;
-use App\Mail\Recover;
-use App\Models\Member;
 use App\Models\Order;
-use App\Models\SnackTemplate;
-use App\Models\Workspace;
-use DateTime;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 
 class dailySnackGenerator extends Command
 {
@@ -34,41 +27,47 @@ class dailySnackGenerator extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
+        $date = Carbon::now();
+        if (!$date->isWeekday()) return;
+
         $agora = Date::now();
         $horaAtual = $agora->format('H:i');
         $horaFutura = $agora->addMinutes(30)->format('H:i');
 
-        $workspaces = Workspace::whereBetween(DB::raw("TIME(snack_time)"), [$horaAtual, $horaFutura])->get();
+        $workspaces = DB::table('workspace_settings')
+            ->where('recurrent', '=', 1)
+            ->whereDate('last_wish', '!=', now()->toDateString())
+            ->whereBetween('snack_time', [$horaAtual, $horaFutura])
+            ->get();
+
+        if (empty($workspaces)) return;
 
         $workspaceIds = [];
         foreach ($workspaces as $workspace) {
-            $workspaceIds[] = $workspace->id;
+            $workspaceIds[] = $workspace->workspace_id;
         }
 
-        $dataAtual = Carbon::now()->format('Y-m-d');
-
-        $membrosSemPedidosHoje = Member::whereIn('workspace_id', $workspaceIds)
-            ->whereDoesntHave('orders', function ($query) use ($dataAtual) {
-                $query->whereDate('created_at', $dataAtual);
-            })
-            ->whereHas('snackTemplates')
+        $orders = DB::table('orders as o')
+            ->whereIn('o.workspace_id', $workspaceIds)
+            ->where('o.recurrent', '=', 1)
             ->get();
 
-        $membersId = [];
-        foreach ($membrosSemPedidosHoje as $member) {
-            $membersId[] = $member->id;
-        }
-
-        $templates = SnackTemplate::whereIn('member_id', $membersId)->get();
-
-        DB::transaction(function () use($templates) {
-            foreach ($templates as $template) {
+        DB::transaction(function () use($orders, $workspaces) {
+            foreach ($orders as $order) {
                 Order::create([
-                    'snack_id' => $template->snack_id,
-                    'member_id' => $template->member_id,
+                    'snack_id' => $order->snack_id,
+                    'user_id' => $order->user_id,
+                    'workspace_id' => $order->workspace_id,
+                    'recurrent' => 0,
                 ]);
+
+                foreach ($workspaces as $workspace) {
+                    DB::table('workspace_settings')
+                        ->where('id', $workspace->workspace_id)
+                        ->update(['last_wish' => now()->toDateString()]);
+                }
             }
         });
     }
