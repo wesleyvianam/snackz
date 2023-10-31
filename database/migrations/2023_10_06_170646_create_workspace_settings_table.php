@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('workspace_settings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->tinyInteger('recurrent')->nullable();
+            $table->date('last_wish')->nullable();
             $table->time('snack_time')->nullable();
             $table->foreignId('workspace_id')->constrained()->onDelete('cascade');;
+            $table->timestamps();
         });
     }
 
