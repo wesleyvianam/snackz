@@ -9,7 +9,10 @@
                 <ul class="w-full px-4">
                     @foreach($order['order'] as $snack)
                         <li class="flex items-center justify-between py-1">
-                            <p class="">{{ $snack['snack'] }}</p>
+                            <p class="w-1/3">{{ $snack['snack'] }}</p>
+                            @if ($snack['quantity'])
+                                <p class="">{{ $snack['quantity'] }}</p>
+                            @endif
                             @if ($key === auth()->user()->id || auth()->user()->super)
                                 <form action="{{ route("order.destroy", $snack['order_id']) }}" method="post">
                                     @csrf
