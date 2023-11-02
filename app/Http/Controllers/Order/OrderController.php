@@ -30,7 +30,8 @@ class OrderController extends Controller
                 s.id as snack_id,
                 c.title as category,
                 c.id as category_id,
-                o.id as order_id
+                o.id as order_id,
+                o.quantity as quantity
             ")
             ->get();
 
@@ -38,6 +39,7 @@ class OrderController extends Controller
         foreach ($orders as $order) {
             $ordersDetails[$order->user_id]['name'] = $order->user;
             $ordersDetails[$order->user_id]['order'][$order->order_id]['snack'] = $order->snack;
+            $ordersDetails[$order->user_id]['order'][$order->order_id]['quantity'] = $order->quantity;
             $ordersDetails[$order->user_id]['order'][$order->order_id]['order_id'] = $order->order_id;
         }
 
@@ -46,8 +48,8 @@ class OrderController extends Controller
             $ordersResume[$order->category_id]['title'] = $order->category;
 
             empty($ordersResume[$order->category_id]['snack'][$order->snack_id])
-                ? $ordersResume[$order->category_id]['snack'][$order->snack_id]['qtd'] = 1
-                : $ordersResume[$order->category_id]['snack'][$order->snack_id]['qtd'] += 1;
+                ? $ordersResume[$order->category_id]['snack'][$order->snack_id]['qtd'] = $order->quantity
+                : $ordersResume[$order->category_id]['snack'][$order->snack_id]['qtd'] += $order->quantity;
 
             $ordersResume[$order->category_id]['snack'][$order->snack_id]['title'] = $order->snack;
         }
@@ -65,24 +67,31 @@ class OrderController extends Controller
         $user = Auth::user();
         $recurrent = 0;
 
-        $values = [];
-        foreach ($request->request as $key => $snack) {
-            if ($key != '_token' && $key != 'recurrent') {
-                $values[] = $snack;
+        $orders = [];
+        foreach ($request->request as $key => $snacks) {
+            if ($key == 'recurrent') {
+                $recurrent = 1;
+                continue;
             }
 
-            if ($key == 'recurrent') {
-                $recurrent = $snack ?: 0;
+            if ($key != '_token') {
+                foreach ($snacks as $cat => $snack) {
+                    $cat == "quantity"
+                        ? $orders[$key]['quantity'] = $snack
+                        : $orders[$key]['id'] = $snack;
+                }
             }
         }
 
-        DB::transaction(function () use ($recurrent, $user, $values) {
-            foreach ($values as $snack) {
+        DB::transaction(function () use ($recurrent, $user, $orders) {
+            foreach ($orders as $order) {
+
                 Order::create([
-                    'snack_id' => $snack,
+                    'snack_id' => $order['id'],
                     'user_id' => $user->id,
                     'workspace_id' => $user->workspace_id,
-                    'recurrent' => $recurrent
+                    'recurrent' => $recurrent,
+                    'quantity' => $order['quantity'] ?? 1
                 ]);
             }
         });
