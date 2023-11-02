@@ -29,14 +29,16 @@ class OrderController extends Controller
                 s.name as snack,
                 s.id as snack_id,
                 c.title as category,
-                c.id as category_id
+                c.id as category_id,
+                o.id as order_id
             ")
             ->get();
 
         $ordersDetails = [];
         foreach ($orders as $order) {
             $ordersDetails[$order->user_id]['name'] = $order->user;
-            $ordersDetails[$order->user_id]['snack'][] = $order->snack;
+            $ordersDetails[$order->user_id]['order'][$order->order_id]['snack'] = $order->snack;
+            $ordersDetails[$order->user_id]['order'][$order->order_id]['order_id'] = $order->order_id;
         }
 
         $ordersResume = [];
@@ -53,7 +55,8 @@ class OrderController extends Controller
         return view('orders.index', compact(
             'categories',
             'ordersDetails',
-            'ordersResume'
+            'ordersResume',
+            'orders'
         ));
     }
 
@@ -83,6 +86,15 @@ class OrderController extends Controller
                 ]);
             }
         });
+
+        return to_route('home.index');
+    }
+
+    public function destroy(Order $order)
+    {
+//        dd($order);
+        $order->delete();
+
 
         return to_route('home.index');
     }
