@@ -14,7 +14,8 @@ class Order extends Model
         'snack_id',
         'user_id',
         'workspace_id',
-        'recurrent'
+        'recurrent',
+        'quantity'
     ];
 
     public function snack(): BelongsTo
