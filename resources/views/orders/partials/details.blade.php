@@ -7,25 +7,16 @@
                 </h2>
 
                 <ul class="w-full px-4">
-                    <li class="flex items-center dark:text-white justify-between font-bold text-gray-700">
-                        <p>Item</p>
-                        <p>Quant</p>
-                        @if ($key == auth()->user()->id)
-                            <p class="pr-10"></p>
-                        @endif
-                    </li>
-
                     @foreach($order['order'] as $snack)
                         <li class="flex items-center justify-between py-1">
                             <p class="">{{ $snack['snack'] }}</p>
-                            <p class="pr-10">1</p>
                             @if ($key === auth()->user()->id || auth()->user()->super)
                                 <form action="{{ route("order.destroy", $snack['order_id']) }}" method="post">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="rounded py-1 px-2 bg-red-500">
-                                        <i class="bi bi-trash text-white"></i>
+                                    <button class="rounded py-1 px-2">
+                                        <i class="bi bi-trash text-red-500"></i>
                                     </button>
                                 </form>
                             @endif
