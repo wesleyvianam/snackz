@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('recurrent');
+            $table->integer('quantity');
 
             $table->foreignId('snack_id')->constrained()->onDelete('cascade');
 
