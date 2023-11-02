@@ -1,19 +1,38 @@
+<style>
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+
+    }
+</style>
+
 <form action="{{ route('home.store') }}" method="post" class="mb-0">
     @csrf
 
-    <div class="bg-red-50 dark:bg-gray-700 border border-red-100 dark:border-gray-500 pt-3 px-3 rounded-xl">
+    <div class="dark:bg-gray-700 border border-red-100 dark:border-gray-500 pt-3 px-3 rounded-xl">
         @foreach($categories as $category)
             <div class="mb-4">
                 @if (!empty($category->snacks[0]))
                     <h2 class="text-xl font-bold text-red-500">{{ $category->title.':' }}</h2>
 
-                    <div class="flex items-center">
+                    <div class="flex items-center pt-2">
                         @foreach($category->snacks as $snack)
                             <div class="flex items-center mr-4">
-                                <input type="radio" value="{{ $snack->id }}" id="{{ $snack->name }}" name="{{ $category->title }}" class="w-4 h-4 text-red-600 bg-white border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <input type="radio" value="{{ $snack->id }}" id="{{ $snack->name }}" name="{{$category->title}}[{{ $category->title }}]" class="w-5 h-5 text-red-600 bg-white border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="{{ $snack->name }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $snack->name }}</label>
                             </div>
                         @endforeach
+
+                        @if ($category->accept_quantity)
+                            <div class="flex items-center">
+                                <input type="number" value="1" id="quant" name="{{$category->title}}[quantity]" class="w-12 h-6 text-gray-900 rounded-lg"/>
+                                <label for="quant" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Quantidade</label>
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>
