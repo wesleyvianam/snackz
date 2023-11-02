@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/home', OrderController::class)
         ->except(['create','edit','show','update']);
 
+    Route::delete('/order/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
+
     Route::resource('/recurrent', RecurrentController::class)
         ->except(['create','edit','show','update']);
 
