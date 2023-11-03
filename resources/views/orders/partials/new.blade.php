@@ -49,7 +49,7 @@
                 <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Recorrente</span>
             </label>
 
-            <p x-show="active" class=" mb-3 text-sm p-2 border border-red-300 bg-white dark:bg-gray-800 rounded-lg text-gray-800">
+            <p x-show="active" class="mb-3 text-sm p-2 border border-red-300 bg-white dark:bg-gray-800 dark:text-white rounded-lg text-gray-800">
                 <i class="bi bi-exclamation-triangle-fill text-red-500 pe-1"></i>
                 Ao escolher que o pedido seja recorrente, todos os dias esse pedido será realizado, caso em algum dia
                 você não queira pedir, terá que desativar ou excluir o pedido caso já tenha sido pedido.
