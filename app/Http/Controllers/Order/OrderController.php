@@ -85,14 +85,15 @@ class OrderController extends Controller
 
         DB::transaction(function () use ($recurrent, $user, $orders) {
             foreach ($orders as $order) {
-
-                Order::create([
-                    'snack_id' => $order['id'],
-                    'user_id' => $user->id,
-                    'workspace_id' => $user->workspace_id,
-                    'recurrent' => $recurrent,
-                    'quantity' => $order['quantity'] ?? 1
-                ]);
+                if (isset($order['id'])) {
+                    Order::create([
+                        'snack_id' => $order['id'],
+                        'user_id' => $user->id,
+                        'workspace_id' => $user->workspace_id,
+                        'recurrent' => $recurrent,
+                        'quantity' => $order['quantity'] ?? 1
+                    ]);
+                }
             }
         });
 
