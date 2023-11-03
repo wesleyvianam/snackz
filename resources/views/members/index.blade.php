@@ -10,7 +10,7 @@
     <x-list
         route="members"
         :data="$members"
-        :params="['name']"
+        :params="['name', 'email']"
         :exception="auth()->user()->id"
         emptyMessage="Nenhum membro encontrado"
     />
