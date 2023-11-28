@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-         $schedule->command('app:daily-snack-generator')->everyTenSeconds();
+         $schedule->command('app:daily-snack-generator')->cron('0 12 * * 1-5');
     }
 
     /**
