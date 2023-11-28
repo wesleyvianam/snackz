@@ -3,12 +3,8 @@
         @csrf
 
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Create a new category') }}
+            {{ __('Criar uma nova Categoria') }}
         </h2>
-
-        <p class="text-md font-light text-gray-900 dark:text-gray-100">
-            {{ __('lorem impson') }}
-        </p>
 
         <div class="mt-6">
             <x-input-label for="password" value="{{ __('title') }}" class="sr-only" />
@@ -19,6 +15,21 @@
                 type="text"
                 class="mt-1 block w-full"
                 required
+                placeholder="{{ __('Title') }}"
+            />
+
+            <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
+        </div>
+
+        <div class="mt-6 flex items-center">
+            <x-input-label for="quantity" value="{{ __('Aceita quantidade?') }}" />
+
+            <x-text-input
+                id="quantity"
+                name="quantity"
+                type="checkbox"
+                class="mt-1 ml-2 block"
+                value="1"
                 placeholder="{{ __('Title') }}"
             />
 

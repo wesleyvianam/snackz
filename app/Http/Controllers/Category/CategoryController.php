@@ -22,7 +22,8 @@ class CategoryController extends Controller
     {
         $category = Category::create([
             'title' => $request->title,
-            'workspace_id' => $this->getWorkspaceId()
+            'workspace_id' => $this->getWorkspaceId(),
+            'accept_quantity' => $request->quantity ?? 0
         ]);
 
         return to_route('categories.index')->with(['success' => "Category $category->title created Successfully"]);
