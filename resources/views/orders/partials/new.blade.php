@@ -58,7 +58,7 @@
     </div>
 
     <div class="flex justify-end mt-4">
-        <x-secondary-button class="me-1">Limpar</x-secondary-button>
+{{--        <x-secondary-button class="me-1">Limpar</x-secondary-button>--}}
 
         <x-primary-button>Salvar</x-primary-button>
     </div>

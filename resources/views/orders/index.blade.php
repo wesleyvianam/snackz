@@ -4,13 +4,13 @@
                 <li class="w-1/3 py-2"
                     @click="activeTab = 'order'"
                     :class="{ 'rounded-t-lg text-white bg-red-500': activeTab === 'order' }">
-                    Pedidos
+                    Pedidos detalhados
                 </li>
 
                 <li class="w-1/3 py-2"
                     @click="activeTab = 'resume'"
                     :class="{ 'rounded-t-lg text-white bg-red-500': activeTab === 'resume' }">
-                    Pedidos detalhados
+                    Pedidos
                 </li>
 
                 <li class="w-1/3 py-2"
