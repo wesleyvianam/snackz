@@ -46,7 +46,7 @@
         <x-primary-button-full>{{ __('Entrar') }}</x-primary-button-full>
 
         <div class="pt-4">
-            <p>Ainda nãão possui conta?
+            <p>Ainda não possui conta?
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="/register" class="text-red-600">Registre-se</a>
             </p>
         </div>
