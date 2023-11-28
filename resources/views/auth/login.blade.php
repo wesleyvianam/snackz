@@ -7,6 +7,8 @@
 
         <!-- Email Address -->
         <div>
+            <x-input-label for="email">Email</x-input-label>
+
             <x-text-input id="email"
                 class="block mt-1 w-full"
                 type="text" name="email"
@@ -21,6 +23,7 @@
 
         <!-- Password -->
         <div class="mt-4">
+            <x-input-label for="password">Senha</x-input-label>
 
             <x-text-input id="password" class="block mt-1 w-full"
                 type="password"
@@ -35,11 +38,17 @@
         <div class="flex items-center justify-end my-3 ">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                    {{ __('Esqueceu a senha?') }}
                 </a>
             @endif
         </div>
 
-        <x-primary-button-full>{{ __('Log in') }}</x-primary-button-full>
+        <x-primary-button-full>{{ __('Entrar') }}</x-primary-button-full>
+
+        <div class="pt-4">
+            <p>Ainda nãão possui conta?
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="/register" class="text-red-600">Registre-se</a>
+            </p>
+        </div>
     </form>
 </x-guest-layout>
