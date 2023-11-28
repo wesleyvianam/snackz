@@ -63,6 +63,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($newUser);
 
-        return to_route('setting.index');
+        return to_route('home.index');
     }
 }
