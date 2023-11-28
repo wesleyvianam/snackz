@@ -43,7 +43,7 @@
             @endif
         </div>
 
-        <x-primary-button-full>{{ __('Entrar') }}</x-primary-button-full>
+        <x-primary-button-full>{{ __('Log in') }}</x-primary-button-full>
 
         <div class="pt-4">
             <p>Ainda não possui conta?

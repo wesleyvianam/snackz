@@ -33,7 +33,7 @@ class MemberController extends Controller
         $user = User::create([
             "name" => $request->name,
             "email" => $request->email,
-            "password" => Hash::make("e46a73d1"),
+            "password" => Hash::make("12345678"),
             "super" => 0,
             "workspace_id" => $this->getWorkspaceId()
         ]);
