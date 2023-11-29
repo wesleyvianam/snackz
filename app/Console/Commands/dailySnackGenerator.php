@@ -32,14 +32,11 @@ class dailySnackGenerator extends Command
         $date = Carbon::now();
         if (!$date->isWeekday()) return;
 
-//        $agora = Date::now();
-//        $horaAtual = $agora->format('H:i');
-//        $horaFutura = $agora->addMinutes(30)->format('H:i');
-
-        $workspaces = DB::table('workspace_settings')
-            ->where('recurrent', '=', 1)
-            ->whereDate('last_wish', '!=', now()->toDateString())
-//            ->whereBetween('snack_time', [$horaAtual, $horaFutura])
+        $workspaces = DB::table('workspace_settings as w')
+            ->where(function ($query) {
+                $query->whereDate('w.last_wish', '!=', now()->toDateString())
+                    ->orWhereNull('w.last_wish');
+            })
             ->get();
 
         if (empty($workspaces)) return;
