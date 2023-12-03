@@ -1,25 +1,35 @@
 <div class="rounded-3xl bg-white dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white">
-    <ul class="w-full hidden md:block">
-        <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('home')) bg-red-100 dark:bg-gray-700 @endif">
-            <i class="bi bi-house-fill pe-2 text-red-400"></i>
-            <a href="/home">Home</a>
+    <ul class="hidden md:block">
+        <li>
+            <a class="flex py-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('home')) bg-red-100 dark:bg-gray-700 @endif" href="/home">
+                <i class="bi bi-house-fill pe-2 text-red-400"></i>
+                Home
+            </a>
         </li>
-        <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('recurrent')) bg-red-100 dark:bg-gray-700 @endif">
-            <i class="ri-refresh-fill pe-2 text-red-400"></i>
-            <a href="/recurrent">Recorrente</a>
+        <li>
+            <a href="/recurrent" class="flex p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('recurrent')) bg-red-100 dark:bg-gray-700 @endif">
+                <i class="ri-refresh-fill pe-2 text-red-400"></i>
+                Recorrente
+            </a>
         </li>
         @if (auth()->user()->super)
-            <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('members')) bg-red-100 dark:bg-gray-700 @endif">
-                <i class="ri-user-fill pe-2 text-red-400"></i>
-                <a href="/members">Members</a>
+            <li>
+                <a href="/members" class="flex p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('members')) bg-red-100 dark:bg-gray-700 @endif">
+                    <i class="ri-user-fill pe-2 text-red-400"></i>
+                    Members
+                </a>
             </li>
-            <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('categories')) bg-red-100 dark:bg-gray-700 @endif">
-                <i class="ri-list-indefinite pe-2 text-red-400"></i>
-                <a href="/categories">Categories</a>
+            <li>
+                <a href="/categories" class="flex p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('categories')) bg-red-100 dark:bg-gray-700 @endif">
+                    <i class="ri-list-indefinite pe-2 text-red-400"></i>
+                    Categories
+                </a>
             </li>
-            <li class="p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-red-100 dark:bg-gray-700 @endif">
-                <i class="bi bi-cup-hot-fill pe-2 text-red-400"></i>
-                <a href="/snacks">Snacks</a>
+            <li>
+                <a href="/snacks" class="flex p-2 my-1 rounded-2xl px-4 hover:bg-red-50 text-lg dark:hover:bg-gray-700 @if(Request::is('snacks')) bg-red-100 dark:bg-gray-700 @endif">
+                    <i class="bi bi-cup-hot-fill pe-2 text-red-400"></i>
+                    Snacks
+                </a>
             </li>
         @endif
     </ul>

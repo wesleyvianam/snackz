@@ -1,5 +1,5 @@
 @if (!empty($ordersDetails))
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @foreach($ordersDetails as $key => $order)
             <div class="border rounded-lg dark:bg-gray-600">
                 <h2 class="text-center py-2 border-b font-bold text-gray-700 dark:text-white">

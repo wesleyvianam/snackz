@@ -100,6 +100,24 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('recurrent.index')">
+                    {{ __('Recorrente') }}
+                </x-responsive-nav-link>
+
+                @if (auth()->user()->super)
+                    <x-responsive-nav-link :href="route('recurrent.index')">
+                        {{ __('Membros') }}
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link :href="route('recurrent.index')">
+                        {{ __('Categoria') }}
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link :href="route('recurrent.index')">
+                        {{ __('Lanche') }}
+                    </x-responsive-nav-link>
+                @endif
+
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
