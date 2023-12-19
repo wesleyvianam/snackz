@@ -35,6 +35,7 @@ class RecurrentController extends Controller
             ->join('categories as c', 'c.id', '=','s.category_id')
             ->join('users as u', 'u.id', '=','o.user_id')
             ->where('o.recurrent', '=', 1)
+            ->where('o.workspace_id', '=', Auth::user()->workspace_id)
             ->selectRaw("
                 s.name as snack,
                 o.id as order_id,
