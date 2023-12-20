@@ -33,6 +33,7 @@ class OrderController extends Controller
                 o.id as order_id,
                 o.quantity as quantity
             ")
+            ->orderBy('m.id')
             ->get();
 
         $ordersDetails = [];
