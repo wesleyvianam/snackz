@@ -46,6 +46,10 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/recurrent/{order}', [RecurrentController::class, 'update'])
         ->name('recurrent.update');
+
+    Route::get('/premium', function () {
+        return view('layouts.premium');
+    })->name('layouts.premium');
 });
 
 require __DIR__.'/auth.php';

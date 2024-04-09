@@ -16,6 +16,10 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <a class="pe-8 text-yellow-700 hover:text-yellow-800" href="{{ route('layouts.premium') }}">
+                    <i class="ri-vip-crown-fill"></i> PREMIUM
+                </a>
+
                 <x-theme-toggle />
 
 {{--                <x-dropdown align="right" width="48">--}}
