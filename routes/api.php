@@ -12,7 +12,7 @@ use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\Workspace\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/categories', CategoryController::class)
         ->except(['view']);
 
@@ -26,9 +26,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/orders', OrderController::class);
 
-    Route::post('logout', [LogoutController::class, 'logout']);
+    Route::get('options', [CategoryController::class, 'options']);
 
-    Route::get('/reports/all', [ReportsController::class, 'listAll']);
+    Route::post('logout', [LogoutController::class, 'logout']);
 });
 
 Route::group([], function () {

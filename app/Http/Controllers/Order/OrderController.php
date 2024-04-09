@@ -103,9 +103,7 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-//        dd($order);
         $order->delete();
-
 
         return to_route('home.index');
     }

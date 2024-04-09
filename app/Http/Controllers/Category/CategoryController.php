@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CategoryController extends Controller
 {
@@ -16,6 +17,15 @@ class CategoryController extends Controller
         $categories = Category::where('workspace_id', $this->getWorkspaceId())->get();
 
         return view('categories.index', compact('categories'));
+    }
+
+    public function options(): JsonResponse
+    {
+        $user = Auth::user();
+        return $user;
+        $categories = Category::where('workspace_id', $this->getWorkspaceId())->with('snacks')->get();
+
+        return response()->json($categories);
     }
 
     public function store(Request $request): RedirectResponse
